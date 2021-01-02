@@ -1,5 +1,7 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { HttpException, Inject, Injectable } from '@nestjs/common';
 import {Books} from '../mock/books.mock';
+import {Model} from 'mongoose';
+
 @Injectable()
 export class BooksService {
     books = Books;
@@ -35,5 +37,18 @@ export class BooksService {
             resolve(this.books);
         })
     }
-
+  
+     updateBook(bookId){
+         let id = Number(bookId);
+         return new Promise(resolve=>{
+             let book = this.books.find(book=>book.id === id);
+             if(!book){
+                 console.log('That book is not found in our libraly');
+             }
+             else{
+                 
+             }
+         })
+       
+     }
 }
